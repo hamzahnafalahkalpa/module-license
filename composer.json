@@ -1,0 +1,20 @@
+{
+    "name": "hanafalah/module-license",
+    "description": "module for license",
+    "type": "library",
+    "require": {
+        "hanafalah/laravel-support": "dev-main"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hanafalah\\ModuleLicense\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "hamzah nur al falah",
+            "email": "hamzahnafalah@gmail.com"
+        }
+    ],
+    "license": "MIT"
+}

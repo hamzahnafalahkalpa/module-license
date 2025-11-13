@@ -1,0 +1,16 @@
+<?php
+
+namespace Hanafalah\ModuleLicense\Concerns;
+
+trait HasMaterial
+{
+    public function materials()
+    {
+        return $this->belongsToManyModel(
+            'Material',
+            'BillOfMaterial',
+            'reference_id',
+            $this->MaterialModel()->getForeignKey()
+        )->where('reference_type', $this->getMorphClass());
+    }
+}
