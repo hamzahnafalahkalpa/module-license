@@ -14,7 +14,18 @@ class ViewLicense extends ApiResource
    */
   public function toArray(\Illuminate\Http\Request $request): array
   {
-    $arr = parent::toArray($request);
+    $arr = [
+      'id' => $this->id,
+      'reference_type' => $this->reference_type,
+      'reference_id' => $this->reference_id,
+      'expired_at' => $this->expired_at,
+      'last_paid' => $this->last_paid,
+      'status' => $this->status,
+      'recurring_type' => $this->recurring_type,
+      'flag' => $this->flag,
+      'created_at' => $this->created_at,
+      'updated_at' => $this->updated_at,
+    ];
     return $arr;
   }
 }

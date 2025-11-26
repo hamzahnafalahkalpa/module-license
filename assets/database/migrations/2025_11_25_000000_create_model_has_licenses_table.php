@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Hanafalah\ModuleLicense\Models\{
-    License
+    ModelHasLicense
 };
 
 return new class extends Migration
@@ -15,7 +15,7 @@ return new class extends Migration
 
     public function __construct()
     {
-        $this->__table = app(config('database.models.License', License::class));
+        $this->__table = app(config('database.models.ModelHasLicense', ModelHasLicense::class));
     }
 
     /**
@@ -28,15 +28,13 @@ return new class extends Migration
         $table_name = $this->__table->getTable();
         if (!$this->isTableExists()) {
             Schema::create($table_name, function (Blueprint $table) {
+                $license = app(config('database.models.License', \Hanafalah\ModuleLicense\Models\License::class));
+
                 $table->ulid('id')->primary();
-                $table->string('license_key', 255)->nullable(false);
-                $table->string('reference_type', 50)->nullable(false);
-                $table->string('reference_id', 26)->nullable(false);
-                $table->timestamp('expired_at')->nullable();
-                $table->timestamp('last_paid')->nullable();
-                $table->string('status', 255)->nullable(false);
-                $table->string('recurring_type', 255)->nullable(false);
-                $table->string('flag', 100)->nullable(false);
+                $table->string('model_type');
+                $table->string('model_id');
+                $table->foreignIdFor($license::class)->index()
+                    ->constrained()->onUpdate('cascade')->onDelete('cascade');
                 $table->json('props')->nullable();
                 $table->timestamps();
                 $table->softDeletes();

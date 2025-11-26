@@ -10,6 +10,7 @@ use Hanafalah\ModuleLicense\Resources\License\{
     ShowLicense
 };
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Support\Str;
 
 class License extends BaseModel
 {
@@ -20,22 +21,37 @@ class License extends BaseModel
     protected $primaryKey = 'id';
     public $list = [
         'id',
-        'name',
+        'license_key',
+        'reference_type',
+        'reference_id',
+        'expired_at',
+        'last_paid',
+        'status',
+        'recurring_type',
+        'flag',
         'props',
     ];
+
+    protected static function booted(): void{
+        static::creating(function($query){
+            $query->license_key ??= Str::orderedUuid();
+        });
+    }
 
     protected $casts = [
         'name' => 'string'
     ];
-
     
-
     public function viewUsingRelation(): array{
-        return [];
+        return [
+            'reference'
+        ];
     }
 
     public function showUsingRelation(): array{
-        return [];
+        return [
+            'reference'
+        ];
     }
 
     public function getViewResource(){
@@ -46,7 +62,6 @@ class License extends BaseModel
         return ShowLicense::class;
     }
 
-    
-
-    
+    public function modelHasLicense(){return $this->hasOneModel('ModelHasLicense','license_id');}
+    public function reference(){return $this->morphTo();}
 }
