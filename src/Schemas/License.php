@@ -30,14 +30,14 @@ class License extends BaseModuleLicense implements ContractsLicense
             'last_paid' => $license_dto->last_paid,
             'status' => $license_dto->status,
             'recurring_type' => $license_dto->recurring_type,
-            'flag' => $license_dto->flag,
         ];
         if (isset($license_dto->id)){
             $guard  = ['id' => $license_dto->id];
         }else{
             $guard = [
                 'reference_type' => $license_dto->reference_type,
-                'reference_id'   => $license_dto->reference_id
+                'reference_id'   => $license_dto->reference_id,
+                'flag' => $license_dto->flag,
             ];
         }
 
