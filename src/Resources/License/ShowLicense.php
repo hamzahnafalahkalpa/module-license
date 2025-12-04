@@ -12,7 +12,11 @@ class ShowLicense extends ViewLicense
    */
   public function toArray(\Illuminate\Http\Request $request): array
   {
-    $arr = [];
+    $arr = [
+      'reference' => $this->relationValidation('reference',function(){
+        return $this->reference->toViewApi()->resolve();
+      },$this->prop_reference),
+    ];
     $arr = $this->mergeArray(parent::toArray($request),$arr);
     return $arr;
   }

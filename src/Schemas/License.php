@@ -14,7 +14,7 @@ class License extends BaseModuleLicense implements ContractsLicense
 {
     protected string $__entity = 'License';
     public $license_model;
-    //protected mixed $__order_by_created_at = false; //asc, desc, false
+    protected mixed $__order_by_created_at = true;
 
     protected array $__cache = [
         'index' => [

@@ -39,18 +39,19 @@ class License extends BaseModel
     }
 
     protected $casts = [
-        'name' => 'string'
+        'name' => 'string',
+        'flag' => 'string'
     ];
     
     public function viewUsingRelation(): array{
         return [
-            'reference'
+            'modelHasLicense'
         ];
     }
 
     public function showUsingRelation(): array{
         return [
-            'reference'
+            'reference','modelHasLicense'
         ];
     }
 

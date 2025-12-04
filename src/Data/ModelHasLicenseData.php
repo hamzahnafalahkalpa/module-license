@@ -22,6 +22,10 @@ class ModelHasLicenseData extends Data implements DataModelHasLicenseData
     #[MapName('model_id')]
     public mixed $model_id = null;
 
+    #[MapInputName('model_model')]
+    #[MapName('model_model')]
+    public ?object $model_model = null;
+
     #[MapInputName('license_model')]
     #[MapName('license_model')]
     public ?object $license_model = null;

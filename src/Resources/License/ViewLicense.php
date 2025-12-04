@@ -18,6 +18,9 @@ class ViewLicense extends ApiResource
       'id' => $this->id,
       'reference_type' => $this->reference_type,
       'reference_id' => $this->reference_id,
+      'model_has_license' => $this->relationValidation('modelHasLicense',function(){
+        return $this->modelHasLicense->toViewApi()->resolve();
+      }),
       'expired_at' => $this->expired_at,
       'last_paid' => $this->last_paid,
       'status' => $this->status,
