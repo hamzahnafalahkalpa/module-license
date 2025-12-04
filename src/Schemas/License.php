@@ -44,7 +44,9 @@ class License extends BaseModuleLicense implements ContractsLicense
         $license = $this->usingEntity()->updateOrCreate(...$create);
 
         $reference = $license_dto->reference_model ?? $license->reference;
-        $license_dto->props['prop_reference'] = $reference->toViewApi()->resolve();
+        if (isset($reference)){
+            $license_dto->props['prop_reference'] = $reference->toViewApi()->resolve();
+        }
         if (isset($license_dto->model_has_license)){
             $model_has_license_dto = &$license_dto->model_has_license;
             $model_has_license_dto->license_model = $license;
