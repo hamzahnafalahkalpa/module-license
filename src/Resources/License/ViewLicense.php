@@ -23,6 +23,8 @@ class ViewLicense extends ApiResource
       }),
       'expired_at' => $this->expired_at,
       'last_paid' => $this->last_paid,
+      'billing_generated_at' => $this->billing_generated_at,
+      'due_date' => $this->due_date,
       'status' => $this->status,
       'recurring_type' => $this->recurring_type,
       'flag' => $this->flag,
