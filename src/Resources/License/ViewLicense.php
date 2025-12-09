@@ -16,8 +16,10 @@ class ViewLicense extends ApiResource
   {
     $arr = [
       'id' => $this->id,
-      'reference_type' => $this->reference_type,
-      'reference_id' => $this->reference_id,
+      'license_key' => $this->license_key,
+      'name' => $this->name ?? null,
+      // 'reference_type' => $this->reference_type,
+      // 'reference_id' => $this->reference_id,
       'model_has_license' => $this->relationValidation('modelHasLicense',function(){
         return $this->modelHasLicense->toViewApi()->resolve();
       }),
